@@ -1,0 +1,251 @@
+{
+  "diary": [
+    {
+      "id": "diary-1",
+      "date": "2026-06-16",
+      "mood": "Calm",
+      "title": "Productive evening session",
+      "content": "Completed two major tasks today. Enjoyed a long walk and stayed hydrated. Feeling aligned and ready for the week.",
+      "timestamp": 1781625601026
+    },
+    {
+      "id": "diary-2",
+      "date": "2026-06-17",
+      "mood": "Focus",
+      "title": "Started Life OS setup",
+      "content": "Setting up my new second brain platform. It feels amazing to centralize my notes, trackers, finance, habits, and goals under one clean UI. Focused and ready.",
+      "timestamp": 1781712001027
+    }
+  ],
+  "studySessions": [
+    {
+      "id": "study-1781712873855",
+      "subject": "General Study",
+      "startTime": 1781712869193,
+      "endTime": 1781712873855,
+      "durationMs": 4662
+    },
+    {
+      "id": "study-1781712320736",
+      "subject": "Coding",
+      "startTime": 1781712313830,
+      "endTime": 1781712320737,
+      "durationMs": 6907
+    },
+    {
+      "id": "study-1",
+      "subject": "TypeScript & Software Architecture",
+      "startTime": 1781704801027,
+      "endTime": 1781708401027,
+      "durationMs": 3600000
+    },
+    {
+      "id": "study-2",
+      "subject": "Database Modeling",
+      "startTime": 1781694001027,
+      "endTime": 1781699401027,
+      "durationMs": 5400000
+    }
+  ],
+  "activeStudy": null,
+  "workoutSessions": [
+    {
+      "id": "workout-1781712202903",
+      "type": "Strength Training",
+      "startTime": 1781712200016,
+      "endTime": 1781712202903,
+      "durationMs": 2887
+    },
+    {
+      "id": "workout-1",
+      "type": "Strength Training",
+      "startTime": 1781622001027,
+      "endTime": 1781625601027,
+      "durationMs": 3600000
+    }
+  ],
+  "activeWorkout": null,
+  "habits": [
+    {
+      "id": "h1",
+      "name": "Read 10 Pages",
+      "frequency": "daily",
+      "isActive": true
+    },
+    {
+      "id": "h2",
+      "name": "8 Hours Sleep",
+      "frequency": "daily",
+      "isActive": true
+    },
+    {
+      "id": "h3",
+      "name": "Drink 3L Water",
+      "frequency": "daily",
+      "isActive": true
+    },
+    {
+      "id": "h4",
+      "name": "Meditation 10 mins",
+      "frequency": "daily",
+      "isActive": true
+    },
+    {
+      "id": "h5",
+      "name": "Weekly Budget Review",
+      "frequency": "weekly",
+      "isActive": true
+    }
+  ],
+  "habitLogs": [
+    {
+      "id": "hl-1",
+      "habitId": "h1",
+      "date": "2026-06-16",
+      "completed": true
+    },
+    {
+      "id": "hl-2",
+      "habitId": "h2",
+      "date": "2026-06-16",
+      "completed": true
+    },
+    {
+      "id": "hl-3",
+      "habitId": "h3",
+      "date": "2026-06-16",
+      "completed": false
+    },
+    {
+      "id": "hl-4",
+      "habitId": "h4",
+      "date": "2026-06-16",
+      "completed": true
+    },
+    {
+      "id": "hl-5",
+      "habitId": "h1",
+      "date": "2026-06-17",
+      "completed": true
+    },
+    {
+      "id": "hl-6",
+      "habitId": "h3",
+      "date": "2026-06-17",
+      "completed": true
+    },
+    {
+      "id": "hl-1781712177138",
+      "habitId": "h5",
+      "date": "2026-06-17",
+      "completed": true
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp-1",
+      "type": "expense",
+      "amount": 14.5,
+      "category": "Food",
+      "description": "Specialty coffee and croissant",
+      "date": "2026-06-17",
+      "source": "wallet",
+      "timestamp": 1781712001027
+    },
+    {
+      "id": "exp-2",
+      "type": "expense",
+      "amount": 85,
+      "category": "Utilities",
+      "description": "Monthly internet subscription",
+      "date": "2026-06-16",
+      "source": "bank",
+      "timestamp": 1781625601027
+    },
+    {
+      "id": "exp-3",
+      "type": "income",
+      "amount": 2450,
+      "category": "Salary",
+      "description": "Bi-weekly consulting fee",
+      "date": "2026-06-16",
+      "source": "bank",
+      "timestamp": 1781625601027
+    }
+  ],
+  "walletBalance": 120,
+  "bankBalance": 4850,
+  "reminders": [
+    {
+      "id": "rem-1",
+      "title": "Submit software architecture proposal",
+      "type": "task",
+      "date": "2026-06-17",
+      "completed": false,
+      "priority": "high"
+    },
+    {
+      "id": "rem-2",
+      "title": "Database Design Midterm Exam",
+      "type": "exam",
+      "date": "2026-06-17",
+      "time": "14:00",
+      "completed": false,
+      "priority": "high"
+    },
+    {
+      "id": "rem-3",
+      "title": "Evening community gym meet",
+      "type": "event",
+      "date": "2026-06-17",
+      "time": "18:30",
+      "completed": false,
+      "priority": "medium"
+    },
+    {
+      "id": "rem-4",
+      "title": "Renew annual hosting subscription",
+      "type": "task",
+      "date": "2026-06-17",
+      "completed": true,
+      "priority": "low"
+    }
+  ],
+  "entertainment": [
+    {
+      "id": "ent-1",
+      "title": "Interstellar",
+      "type": "Movie",
+      "status": "Completed",
+      "rating": 10,
+      "review": "Masterpiece. The scoring, the visual effects, and the emotional core are absolute top tier.",
+      "timestamp": 1781539201027
+    },
+    {
+      "id": "ent-2",
+      "title": "Severance Season 1",
+      "type": "Series",
+      "status": "Watching",
+      "rating": 9,
+      "review": "Slick production and deeply eerie premise. Highly recommended watch.",
+      "timestamp": 1781625601027
+    }
+  ],
+  "waterIntake": {
+    "2026-06-16": 2500,
+    "2026-06-17": 1500
+  },
+  "steps": {
+    "2026-06-16": 10250,
+    "2026-06-17": 6230
+  },
+  "sleepHours": {
+    "2026-06-16": 7.5,
+    "2026-06-17": 8
+  },
+  "productivityMode": true,
+  "lastUpdated": 1781712958044,
+  "activeProductivity": {
+    "startTime": 1781712884629
+  }
+}
