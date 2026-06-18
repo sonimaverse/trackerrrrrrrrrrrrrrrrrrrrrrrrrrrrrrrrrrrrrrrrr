@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+miport express, { Request, Response } from "express";
 import path from "path";
 import fs from "fs";
 import { GoogleGenAI } from "@google/genai";
@@ -9,7 +9,7 @@ import { DatabaseState } from "./src/types";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const DB_PATH = path.join(process.cwd(), "data", "db.json");
 
 // Ensure data directory exists
