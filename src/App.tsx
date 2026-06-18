@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Home, Book, BookOpen, Dumbbell, CreditCard, CheckCircle, Film, Calendar, Brain
+  Home, Book, BookOpen, Dumbbell, CreditCard, CheckCircle,
+  Film, Calendar, Brain
 } from "lucide-react";
-
-import { DatabaseState } from "./types";
 
 // Views
 import DashboardView from "./components/DashboardView";
@@ -16,8 +15,8 @@ import EntertainmentView from "./components/EntertainmentView";
 import CalendarView from "./components/CalendarView";
 import AiAnalystView from "./components/AiAnalystView";
 
-// ✅ SAFE DEFAULT STATE
-const DEFAULT_STATE: DatabaseState = {
+// SAFE DEFAULT STATE (NO BACKEND REQUIRED)
+const DEFAULT_STATE = {
   lastUpdated: Date.now(),
   diary: [],
   studySessions: [],
@@ -30,42 +29,32 @@ export default function App() {
   const [activeView, setActiveView] = useState("dashboard");
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  const [state, setState] = useState<DatabaseState>(DEFAULT_STATE);
-  const stateRef = useRef<DatabaseState>(DEFAULT_STATE);
+  const [state, setState] = useState(DEFAULT_STATE);
 
-  // sync ref + localStorage
+  // Load from localStorage ONLY
   useEffect(() => {
-    stateRef.current = state;
+    const local = localStorage.getItem("lifeos-state");
+    if (local) {
+      try {
+        setState(JSON.parse(local));
+      } catch {
+        setState(DEFAULT_STATE);
+      }
+    }
+  }, []);
+
+  // Save state automatically
+  useEffect(() => {
     localStorage.setItem("lifeos-state", JSON.stringify(state));
   }, [state]);
 
-  // load from localStorage only (NO backend = Vercel safe)
-  const loadState = () => {
-    try {
-      const local = localStorage.getItem("lifeos-state");
-      if (local) {
-        setState(JSON.parse(local));
-      } else {
-        setState(DEFAULT_STATE);
-      }
-    } catch {
-      setState(DEFAULT_STATE);
-    }
-  };
-
-  useEffect(() => {
-    loadState();
-  }, []);
-
-  // update state safely
-  const updateState = (newState: DatabaseState) => {
+  // Update state safely
+  const updateState = (newState: any) => {
     const updated = { ...newState, lastUpdated: Date.now() };
     setState(updated);
-    localStorage.setItem("lifeos-state", JSON.stringify(updated));
   };
 
-  // navigation items
-  const mainNavItems = [
+  const navItems = [
     { id: "dashboard", label: "Dashboard", icon: Home },
     { id: "diary", label: "Journal", icon: Book },
     { id: "study", label: "Study", icon: BookOpen },
@@ -84,7 +73,7 @@ export default function App() {
       <aside className="w-60 bg-slate-900 p-4 hidden md:block">
         <h1 className="text-sm font-bold mb-4">Life OS</h1>
 
-        {mainNavItems.map(item => {
+        {navItems.map((item) => {
           const Icon = item.icon;
           return (
             <button
@@ -99,7 +88,7 @@ export default function App() {
         })}
       </aside>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       <main className="flex-1 p-4">
 
         {activeView === "dashboard" && (
