@@ -15,7 +15,7 @@ import EntertainmentView from "./components/EntertainmentView";
 import CalendarView from "./components/CalendarView";
 import AiAnalystView from "./components/AiAnalystView";
 
-// SAFE DEFAULT STATE (NO BACKEND REQUIRED)
+// ✅ SAFE PRODUCTION STATE
 const DEFAULT_STATE = {
   lastUpdated: Date.now(),
   diary: [],
@@ -29,31 +29,54 @@ export default function App() {
   const [activeView, setActiveView] = useState("dashboard");
   const [isDarkMode, setIsDarkMode] = useState(true);
 
+  // ✅ NEVER NULL STATE (CRASH FIX)
   const [state, setState] = useState(DEFAULT_STATE);
 
-  // Load from localStorage ONLY
+  // =========================
+  // LOAD (LOCALSTORAGE ONLY)
+  // =========================
   useEffect(() => {
-    const local = localStorage.getItem("lifeos-state");
-    if (local) {
-      try {
-        setState(JSON.parse(local));
-      } catch {
-        setState(DEFAULT_STATE);
+    try {
+      const saved = localStorage.getItem("lifeos-state");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setState(parsed);
       }
+    } catch (err) {
+      console.error("Load failed, using default state");
     }
   }, []);
 
-  // Save state automatically
+  // =========================
+  // AUTO SAVE (SAFE SYNC)
+  // =========================
   useEffect(() => {
-    localStorage.setItem("lifeos-state", JSON.stringify(state));
+    try {
+      localStorage.setItem("lifeos-state", JSON.stringify(state));
+    } catch (err) {
+      console.error("Save failed");
+    }
   }, [state]);
 
-  // Update state safely
+  // =========================
+  // SAFE STATE UPDATE
+  // =========================
   const updateState = (newState: any) => {
-    const updated = { ...newState, lastUpdated: Date.now() };
-    setState(updated);
+    try {
+      const updated = {
+        ...DEFAULT_STATE,
+        ...newState,
+        lastUpdated: Date.now()
+      };
+      setState(updated);
+    } catch (err) {
+      console.error("Update failed");
+    }
   };
 
+  // =========================
+  // NAV ITEMS
+  // =========================
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: Home },
     { id: "diary", label: "Journal", icon: Book },
@@ -65,6 +88,11 @@ export default function App() {
     { id: "calendar", label: "Calendar", icon: Calendar },
     { id: "ai", label: "AI", icon: Brain }
   ];
+
+  // =========================
+  // SAFE RENDER GUARD
+  // =========================
+  const safeState = state || DEFAULT_STATE;
 
   return (
     <div className={`${isDarkMode ? "bg-slate-950 text-white" : "bg-white text-black"} min-h-screen flex`}>
@@ -79,7 +107,7 @@ export default function App() {
             <button
               key={item.id}
               onClick={() => setActiveView(item.id)}
-              className="flex items-center gap-2 py-2 px-3 w-full hover:bg-slate-800 rounded text-sm"
+              className="flex items-center gap-2 py-2 px-3 w-full hover:bg-slate-800 rounded text-sm text-left"
             >
               <Icon size={16} />
               {item.label}
@@ -88,35 +116,35 @@ export default function App() {
         })}
       </aside>
 
-      {/* MAIN */}
+      {/* MAIN AREA */}
       <main className="flex-1 p-4">
 
         {activeView === "dashboard" && (
-          <DashboardView state={state} updateState={updateState} />
+          <DashboardView state={safeState} updateState={updateState} />
         )}
         {activeView === "diary" && (
-          <DiaryView state={state} updateState={updateState} />
+          <DiaryView state={safeState} updateState={updateState} />
         )}
         {activeView === "study" && (
-          <StudyView state={state} updateState={updateState} />
+          <StudyView state={safeState} updateState={updateState} />
         )}
         {activeView === "fitness" && (
-          <FitnessView state={state} updateState={updateState} />
+          <FitnessView state={safeState} updateState={updateState} />
         )}
         {activeView === "finance" && (
-          <FinanceView state={state} updateState={updateState} />
+          <FinanceView state={safeState} updateState={updateState} />
         )}
         {activeView === "habits" && (
-          <HabitView state={state} updateState={updateState} />
+          <HabitView state={safeState} updateState={updateState} />
         )}
         {activeView === "entertainment" && (
-          <EntertainmentView state={state} updateState={updateState} />
+          <EntertainmentView state={safeState} updateState={updateState} />
         )}
         {activeView === "calendar" && (
-          <CalendarView state={state} updateState={updateState} />
+          <CalendarView state={safeState} updateState={updateState} />
         )}
         {activeView === "ai" && (
-          <AiAnalystView state={state} />
+          <AiAnalystView state={safeState} />
         )}
 
       </main>
