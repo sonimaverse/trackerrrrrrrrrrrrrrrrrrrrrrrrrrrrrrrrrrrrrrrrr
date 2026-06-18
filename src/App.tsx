@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSafeState } from "./state/useSafeState";
 
 // Views
 import DashboardView from "./components/DashboardView";
@@ -12,20 +11,34 @@ import EntertainmentView from "./components/EntertainmentView";
 import CalendarView from "./components/CalendarView";
 import AiAnalystView from "./components/AiAnalystView";
 
+// SAFE INITIAL STATE
+const EMPTY_STATE = {
+  diary: [],
+  studySessions: [],
+  expenses: [],
+  reminders: [],
+  entertainment: [],
+  calendar: {}
+};
+
 export default function App() {
   const [activeView, setActiveView] = useState("dashboard");
-  const [state, setState] = useSafeState();
+  const [state, setState] = useState<any>(EMPTY_STATE);
 
-  // SAFE UPDATE (never crashes)
+  // SAFE UPDATE
   const updateState = (newState: any) => {
     setState((prev: any) => ({
+      ...EMPTY_STATE,
       ...prev,
       ...newState,
       lastUpdated: Date.now()
     }));
   };
 
-  const safe = state || {};
+  const safe = {
+    ...EMPTY_STATE,
+    ...(state || {})
+  };
 
   return (
     <div className="min-h-screen flex bg-slate-950 text-white">
@@ -58,7 +71,6 @@ export default function App() {
       {/* MAIN */}
       <main className="flex-1 p-4">
 
-        {/* 🔥 NO CRASH RENDERING */}
         {activeView === "dashboard" && (
           <DashboardView state={safe} updateState={updateState} />
         )}
