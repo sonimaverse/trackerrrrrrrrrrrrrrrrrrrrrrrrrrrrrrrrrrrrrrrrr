@@ -19,6 +19,13 @@
   ],
   "studySessions": [
     {
+      "id": "study-1781714307070",
+      "subject": "Coding",
+      "startTime": 1781714304519,
+      "endTime": 1781714307070,
+      "durationMs": 2551
+    },
+    {
       "id": "study-1781712873855",
       "subject": "General Study",
       "startTime": 1781712869193,
@@ -126,7 +133,7 @@
       "id": "hl-5",
       "habitId": "h1",
       "date": "2026-06-17",
-      "completed": true
+      "completed": false
     },
     {
       "id": "hl-6",
@@ -233,7 +240,7 @@
   ],
   "waterIntake": {
     "2026-06-16": 2500,
-    "2026-06-17": 1500
+    "2026-06-17": 2000
   },
   "steps": {
     "2026-06-16": 10250,
@@ -244,7 +251,7 @@
     "2026-06-17": 8
   },
   "productivityMode": true,
-  "lastUpdated": 1781712958044,
+  "lastUpdated": 1781714376689,
   "activeProductivity": {
     "startTime": 1781712884629
   }
